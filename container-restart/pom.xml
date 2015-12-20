@@ -11,7 +11,7 @@
     </parent>
     <artifactId>container-restart</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}</name>
+    <name>GarethHealy :: Karaf Commands :: container-restart</name>
 
     <build>
         <resources>

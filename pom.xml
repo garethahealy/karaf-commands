@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.garethahealy</groupId>
-        <artifactId>osgi-parent</artifactId>
-        <version>1.0.6</version>
-        <relativePath>../poms/osgi-parent</relativePath>
+        <artifactId>camel-parent</artifactId>
+        <version>1.0.7-SNAPSHOT</version>
+        <relativePath/>
     </parent>
     <groupId>com.garethahealy.fuse</groupId>
     <artifactId>karaf-commands</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>${project.artifactId}</name>
+    <name>GarethHealy :: Karaf Commands</name>
 
     <scm>
         <connection>scm:git:https://github.com/garethahealy/karaf-commands/tree/master</connection>
@@ -23,6 +23,7 @@
 
     <modules>
         <module>container-restart</module>
+        <module>container-status</module>
     </modules>
     
 </project>

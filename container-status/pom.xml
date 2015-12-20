@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.garethahealy.fuse</groupId>
+        <artifactId>karaf-commands</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <artifactId>container-status</artifactId>
+    <packaging>bundle</packaging>
+    <name>GarethHealy :: Karaf Commands :: container-status</name>
+
+    <properties>
+        <build.osgi.import.before.defaults>
+        </build.osgi.import.before.defaults>
+        <build.osgi.export.pkg>com.garethahealy.karaf.commands.container.status.*</build.osgi.export.pkg>
+        <build.osgi.export.service/>
+        <build.osgi.activator/>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>fabric-api</artifactId>
+            <version>${fabric8-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>fabric-commands</artifactId>
+            <version>${fabric8-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                        <configuration>
+                            <specVersion>1.2</specVersion>
+                            <strictMode>false</strictMode>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
