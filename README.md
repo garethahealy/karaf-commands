@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/garethahealy/jboss-fuse-setup.svg?branch=master)](https://travis-ci.org/garethahealy/karaf-commands)
+[![Build Status](https://travis-ci.org/garethahealy/karaf-commands.svg?branch=master)](https://travis-ci.org/garethahealy/karaf-commands)
 
 # karaf-commands
 Helpful commands to be used on Karaf
