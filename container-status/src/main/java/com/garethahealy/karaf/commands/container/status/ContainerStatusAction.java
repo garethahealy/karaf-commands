@@ -44,7 +44,7 @@ public class ContainerStatusAction extends AbstractAction {
     @Option(name = "--status", aliases = "-s", required = true, multiValued = false, description = "Status of container. Possible values are: started, stopped)", valueToShowInHelp = "started")
     protected String status;
 
-    @Option(name = "--tick", aliases = "-t", required = false, multiValued = false, description = "Time between checks in milliseconds", valueToShowInHelp = "1000")
+    @Option(name = "--tick", aliases = "-t", required = false, multiValued = false, description = "Time between checks in milliseconds", valueToShowInHelp = "5000")
     protected long tick;
 
     @Option(name = "--wait", aliases = "-w", required = false, multiValued = false, description = "Time to wait until process fails in milliseconds", valueToShowInHelp = "60000")
@@ -64,7 +64,7 @@ public class ContainerStatusAction extends AbstractAction {
     @Override
     protected Object doExecute() throws Exception {
         if (tick <= 0) {
-            tick = TimeUnit.SECONDS.toMillis(1);
+            tick = TimeUnit.SECONDS.toMillis(5);
         }
 
         if (wait <= 0) {
@@ -73,25 +73,17 @@ public class ContainerStatusAction extends AbstractAction {
 
         log.trace("Checking status of {} for {} every {}ms until {}ms.", status, containerName, tick, wait);
 
-        //Get the container or fail as it doesnt exist
         Container container = FabricCommand.getContainer(fabricService, containerName);
 
-        log.trace("Container {} exists.", container.getId());
-
         Boolean hasTimedOut;
-
-        Boolean isStartedStatus = status.equals(ContainerStartedPredicate.STARTED);
-        Boolean isStoppedStatus = status.equals(ContainerStoppedPredicate.STOPPED);
-        if (isStartedStatus) {
-            hasTimedOut = waitForContainerStatus(new ContainerStartedPredicate(containerName, dataStore));
-        } else if (isStoppedStatus) {
-            hasTimedOut = waitForContainerStatus(new ContainerStoppedPredicate(containerName, dataStore));
+        if (status.equals(ContainerStartedPredicate.STARTED)) {
+            hasTimedOut = waitForContainerStatus(container, new ContainerStartedPredicate(containerName, dataStore));
+        } else if (status.equals(ContainerStoppedPredicate.STOPPED)) {
+            hasTimedOut = waitForContainerStatus(container, new ContainerStoppedPredicate(containerName, dataStore));
         } else {
             throw new IllegalArgumentException("Status " + status + " does not exist. Expected '"
                                                + ContainerStartedPredicate.STARTED + "' or '" + ContainerStoppedPredicate.STOPPED + "'");
         }
-
-        printFinalStatus();
 
         if (hasTimedOut) {
             throw new TimeoutException("Took longer than wait value");
@@ -100,14 +92,14 @@ public class ContainerStatusAction extends AbstractAction {
         return null;
     }
 
-    private Boolean waitForContainerStatus(StatusPredicate predicate) throws InterruptedException {
+    protected Boolean waitForContainerStatus(Container container, StatusPredicate predicate) throws InterruptedException {
         Boolean hasTimedOut = false;
 
         Long currentTime = System.nanoTime();
         Long waitTimeout = currentTime + TimeUnit.MILLISECONDS.toNanos(wait);
 
         while (!hasTimedOut) {
-            Container container = fabricService.getContainer(containerName);
+            //Container container = fabricService.getContainer(containerName);
             Boolean isComplete = predicate.matches(container);
             if (isComplete) {
                 log.trace("{} matches status {}", containerName, status);
@@ -126,12 +118,12 @@ public class ContainerStatusAction extends AbstractAction {
             TimeUnit.MILLISECONDS.sleep(tick);
         }
 
+        printContainerStatus(container, predicate);
+
         return hasTimedOut;
     }
 
-    private void printFinalStatus() {
-        Container container = fabricService.getContainer(containerName);
-
+    private void printContainerStatus(Container container, StatusPredicate predicate) {
         System.out.println(String.format(FORMAT, "Name:", container.getId()));
         System.out.println(String.format(FORMAT, "Connected:", container.isAlive()));
 
@@ -154,5 +146,8 @@ public class ContainerStatusAction extends AbstractAction {
         if (container.getProvisionException() != null) {
             System.out.println(String.format(FORMAT, "Provision Error:", container.getProvisionException()));
         }
+
+        String overall = predicate.matches(container) ? "success" : "failed";
+        System.out.println(String.format(FORMAT, "Overall Status:", overall));
     }
 }

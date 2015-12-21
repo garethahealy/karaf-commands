@@ -21,6 +21,8 @@ package com.garethahealy.karaf.commands.container.status.predicates;
 
 import io.fabric8.api.Container;
 import io.fabric8.api.DataStore;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +43,15 @@ public class ContainerStoppedPredicate implements StatusPredicate {
     public Boolean matches(Container container) {
         String provisionStatus = container.getProvisionStatus();
         Boolean isProvisionStopped = provisionStatus.equalsIgnoreCase(Container.PROVISION_STOPPED);
+        Boolean isAlive = container.isAlive();
 
-        return !container.isAlive() && isProvisionStopped;
+        LOG.trace(new ToStringBuilder(this)
+                      .append("containerName", containerName)
+                      .append("provisionStatus", provisionStatus)
+                      .append("isProvisionStopped", isProvisionStopped)
+                      .append("isAlive", isAlive)
+                      .toString());
+
+        return !isAlive && isProvisionStopped;
     }
 }

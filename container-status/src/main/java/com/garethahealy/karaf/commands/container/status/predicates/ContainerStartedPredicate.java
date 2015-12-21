@@ -21,6 +21,8 @@ package com.garethahealy.karaf.commands.container.status.predicates;
 
 import io.fabric8.api.Container;
 import io.fabric8.api.DataStore;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,26 +47,32 @@ public class ContainerStartedPredicate implements StatusPredicate {
         Boolean isProvisionComplete = provisionStatus.equalsIgnoreCase(Container.PROVISION_SUCCESS);
         Boolean isDependencyFrameworkComplete = false;
 
-        LOG.trace("{} is alive {} and provisioning complete {} with provision status {}", containerName, isAlive, isProvisioningComplete, provisionStatus);
-
         String blueprintStatus = dataStore.getContainerAttribute(containerName, DataStore.ContainerAttribute.BlueprintStatus, "", false, false);
         if (!blueprintStatus.isEmpty()) {
-            LOG.trace("{} has blueprint status: {}", containerName, blueprintStatus);
             isDependencyFrameworkComplete = blueprintStatus.equalsIgnoreCase(STARTED);
         }
 
         String springStatus = dataStore.getContainerAttribute(containerName, DataStore.ContainerAttribute.SpringStatus, "", false, false);
         if (!springStatus.isEmpty()) {
-            LOG.trace("{} has spring status: {}", containerName, springStatus);
             isDependencyFrameworkComplete = springStatus.equalsIgnoreCase(STARTED);
         }
 
         String provisionException = container.getProvisionException();
-        Boolean hasProvisionException = provisionException != null;
-        if (hasProvisionException) {
-            LOG.trace("{} has provision exception: {}", containerName, provisionException);
+        Boolean hasNoProvisionException = provisionException == null;
+        if (hasNoProvisionException) {
+            provisionException = "";
         }
 
-        return isAlive && isProvisioningComplete && isDependencyFrameworkComplete && isProvisionComplete && !hasProvisionException;
+        LOG.trace(new ToStringBuilder(this)
+                      .append("containerName", containerName)
+                      .append("isAlive", isAlive)
+                      .append("isProvisioningComplete", isProvisioningComplete)
+                      .append("isDependencyFrameworkComplete", isDependencyFrameworkComplete)
+                      .append("isProvisionComplete", isProvisionComplete)
+                      .append("hasNoProvisionException", hasNoProvisionException)
+                      .append("provisionException", provisionException)
+                      .toString());
+
+        return isAlive && isProvisioningComplete && isDependencyFrameworkComplete && isProvisionComplete && hasNoProvisionException;
     }
 }
