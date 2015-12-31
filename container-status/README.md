@@ -3,8 +3,8 @@ Wait for a JBoss Fuse deployed container within a Fabric to be at a certain stat
 
 # Build and Install
 - mvn clean install
-- install -s mvn:org.apache.commons/commons-lang3/3.4
-- install -s mvn:com.garethahealy.fuse/container-status/1.0.0-SNAPSHOT
+- fabric:profile-edit --repository mvn:com.garethahealy.fuse/container-status/1.0.0-SNAPSHOT/xml/features default
+- fabric:profile-edit --feature container-status default
 
 # Usage
 ## Wait for container to be started

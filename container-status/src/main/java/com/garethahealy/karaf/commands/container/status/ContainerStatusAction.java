@@ -148,6 +148,6 @@ public class ContainerStatusAction extends AbstractAction {
         }
 
         String overall = predicate.matches(container) ? "success" : "failed";
-        System.out.println(String.format(FORMAT, "Overall Status:", overall));
+        System.out.println("Overall Status: " + overall);
     }
 }
