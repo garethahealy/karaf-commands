@@ -50,7 +50,7 @@ public class ContainerStatusAction extends AbstractAction {
     @Option(name = "--wait", aliases = "-w", required = false, multiValued = false, description = "Time to wait until process fails in milliseconds", valueToShowInHelp = "60000")
     protected long wait;
 
-    @Argument(index = 0, name = "container", description = "The name of the container.", required = false, multiValued = false)
+    @Argument(index = 0, name = "container", description = "The name of the container.", required = true, multiValued = false)
     private String containerName;
 
     private final FabricService fabricService;
@@ -99,7 +99,6 @@ public class ContainerStatusAction extends AbstractAction {
         Long waitTimeout = currentTime + TimeUnit.MILLISECONDS.toNanos(wait);
 
         while (!hasTimedOut) {
-            //Container container = fabricService.getContainer(containerName);
             Boolean isComplete = predicate.matches(container);
             if (isComplete) {
                 log.trace("{} matches status {}", containerName, status);

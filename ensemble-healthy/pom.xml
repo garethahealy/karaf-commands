@@ -9,14 +9,14 @@
         <version>1.0.0</version>
         <relativePath>../</relativePath>
     </parent>
-    <artifactId>container-status</artifactId>
+    <artifactId>ensemble-healthy</artifactId>
     <packaging>bundle</packaging>
-    <name>GarethHealy :: Karaf Commands :: container-status</name>
+    <name>GarethHealy :: Karaf Commands :: ensemble-healthy</name>
 
     <properties>
         <build.osgi.import.before.defaults>
         </build.osgi.import.before.defaults>
-        <build.osgi.export.pkg>com.garethahealy.karaf.commands.container.status.*</build.osgi.export.pkg>
+        <build.osgi.export.pkg>com.garethahealy.karaf.commands.ensemble.healthy.*</build.osgi.export.pkg>
         <build.osgi.export.service/>
         <build.osgi.activator/>
     </properties>
