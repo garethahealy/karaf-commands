@@ -4,9 +4,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.garethahealy.fuse</groupId>
-        <artifactId>karaf-commands</artifactId>
-        <version>1.0.0</version>
+        <groupId>com.garethahealy.karaf-commands</groupId>
+        <artifactId>karaf-commands-parent</artifactId>
+        <version>1.0.1</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>container-restart</artifactId>

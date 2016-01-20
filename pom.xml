@@ -4,15 +4,15 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.garethahealy</groupId>
-        <artifactId>camel-parent</artifactId>
-        <version>1.1.0</version>
+        <groupId>com.garethahealy.poms</groupId>
+        <artifactId>jboss-fuse-parent</artifactId>
+        <version>1.0.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.garethahealy.fuse</groupId>
-    <artifactId>karaf-commands</artifactId>
+    <groupId>com.garethahealy.karaf-commands</groupId>
+    <artifactId>karaf-commands-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>GarethHealy :: Karaf Commands</name>
 
     <scm>
