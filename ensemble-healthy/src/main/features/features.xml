@@ -23,7 +23,7 @@
 
     <feature name="ensemble-healthy" version="${project.version}" resolver="(obr)">
         <bundle>mvn:org.apache.commons/commons-collections4/${commons-collections4-version}</bundle>
-        <bundle>mvn:com.garethahealy.fuse/ensemble-healthy/${project.version}</bundle>
+        <bundle>mvn:com.garethahealy.karaf-commands/ensemble-healthy/${project.version}</bundle>
     </feature>
 
 </features>

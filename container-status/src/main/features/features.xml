@@ -23,7 +23,7 @@
 
     <feature name="container-status" version="${project.version}" resolver="(obr)">
         <bundle>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
-        <bundle>mvn:com.garethahealy.fuse/container-status/${project.version}</bundle>
+        <bundle>mvn:com.garethahealy.karaf-commands/container-status/${project.version}</bundle>
     </feature>
 
 </features>
