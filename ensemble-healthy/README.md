@@ -3,7 +3,7 @@ Wait for a JBoss Fuse ensemble to be become active and healthy.
 
 # Build and Install
 - mvn clean install
-- fabric:profile-edit --repository mvn:com.garethahealy.fuse/ensemble-healthy/1.0.0-SNAPSHOT/xml/features default
+- fabric:profile-edit --repository mvn:com.garethahealy.fuse/ensemble-healthy/1.0.2/xml/features default
 - fabric:profile-edit --feature ensemble-healthy default
 
 # Usage

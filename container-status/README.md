@@ -3,7 +3,7 @@ Wait for a JBoss Fuse deployed container within a Fabric to be at a certain stat
 
 # Build and Install
 - mvn clean install
-- fabric:profile-edit --repository mvn:com.garethahealy.fuse/container-status/1.0.0-SNAPSHOT/xml/features default
+- fabric:profile-edit --repository mvn:com.garethahealy.fuse/container-status/1.0.2/xml/features default
 - fabric:profile-edit --feature container-status default
 
 # Usage
