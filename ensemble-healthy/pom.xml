@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.garethahealy.karaf-commands</groupId>
         <artifactId>karaf-commands-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>ensemble-healthy</artifactId>

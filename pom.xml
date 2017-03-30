@@ -12,7 +12,7 @@
     <groupId>com.garethahealy.karaf-commands</groupId>
     <artifactId>karaf-commands-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>GarethHealy :: Karaf Commands</name>
 
     <scm>
