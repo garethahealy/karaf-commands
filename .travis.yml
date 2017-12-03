@@ -1,17 +1,38 @@
 sudo: required
 dist: trusty
+addons:
+  sonarqube:
+    organization: garethahealy-github
+    token:
+      secure: JkCGrPpX4Hr56xbbEMYLgmAIrYdPzIz30SaIapW82UFYBCaKji+bdVTBFTy2DFfE3rfCgEr7WuAqdxfhT1muZptZoZxlB/bHUmPMePMdGQkKR1xjD9CbeNGLnn6SWsIZ3lHBBAkUqZkCT1dizhhWmF7xEs6pgosPZAyTvqRfteMyn6jpT2YdHH6ZcC9nOsTbfUvBAB/1M5d5XQQT3i4NAILqmVv6OZ2IMRoTrTeKRHagwWKiiwWGt7m67NQ9TG4ZxSQO8myxKml3t0uwwfIZKUXOT11cq4aiX6bVoRwuzI1XE/tSnxcgJixYmHIt1bQ65NYdypZnBWsCzKhhnW6sqYtfJEE7lZ8EfuKY2cDs7s43de0mrrnaxN1pShx/lOv38KLs9Cnfx09eKM7tSLBeIai2gousJArwJpgT9NRJQnTRT5LIdtb4QWU/n0/8VL430z4Ir/+z0YkL7i6BnzAKHca47zt3sEOCmF/fF9G9QiG5dGhLo9JzxLK/ix11DpMrcdcfREfQSwfzfFbFNpd8UUdj7p5JjGVjrgPdxNXXVt3nirG+S5n1Lra8+MfL2IbVM3ma62be8sC4/mQYSuvVWDZHtJJ4yATP+9NWX/eU8h29gNNvM2X2RIrQmmkvf9w/aTaoMOFu0RRX5VtDEEYKdIAvr93GU/sANOPfdxJ1olg=
+env:
+  global:
+  - secure: h8Jwt2N1VYQmPPvPYIziOY6/4hMZ4U/Dy4m0SmuY8YFDMua0X1RwJpG90tEfwQc4lQEHs9VKPceRKM7pVlu4z+FI+rQmwRw9HbkULH6UhFGKOo/neShzkoy++/jRVNmgnAsjPIwepHX2lihjaeRZTrkG1sj1Bxyd7VOoEylNTI9YdTJsY0ozxjM0Rb5pOW8+rpmx7MArTbK4vZiEc3wDhUZiJeZEcHfHqIwiPP2LT8028CSDeipE5YcsId3ydQ+eR4AtXgbgA3Gfp+QnFgjmEu+iYo7GdNcDvTYSgROaimVucBC4Nm1apo2QAxyKMFXJIqGGrDXQCwIk1ZIVxN0QkbvIdCgu+CJTF2KDzAMAuTqUrHLxhtANXoKh86xXa2zxTlJzvHZNbaPKvElHE+Dyh2OubD8sUNtomcRQeKjGvQG/bdApb2hmM9iQUo0mGk8tLqbosXpjE8MdIUwG/4a7WdICBmi/4/PldjJW42gIcKWT1lwcSGg3Q4sG49+TrQjE/PKU3NQvcUjRn1nCvIrhErJjnUiWfJ50TEoMISWt2AVQp29o7cDdYZ3qjUQX5r0Ncq3cREaWBiLa5G+UhwpifqM8fNng5QSSdehObx2edmMwidi0XC1LVxHmaGf/Zy/VF3yUQHnOnujp9KHppCO6zGfi8PmNyS+LoEL/lVWukn8=
+  - secure: HAjtfjsuR7UY/oXtmDnSca/5BgMPggHTy0qcY7ExkWa357vAB1Es/M0naLqZgNpiIMo6XY4ES2bLNqOB5uvkFlJ3yMefqYJPJr9Z52q8uiM5BRug3w2ANBvDa6xzLWKpxgrg1X/LK4MmiysQbjQ8Cac3+u5JaKv+O+x4clop3i5sIp1lNxOh0G3LpzmjjntrXIkCR3RcQ4/mDUHfhlKxNxr6jLShlF5YFOftlamPU2X1fpCSgxhfPnyigZaBtJ08QJhtO0CBjDNy3kB7Y/4FOsv2GoPv6Rkw/rtU3REml2cZm1Hn/6UvECtgB8IulmYWrzWGTpMRlTq70NbdEGwp/57oDPWATXpfTkZ3QIrrzjF8kB9/iTybWHOjLTI8Fyswbrutb67LqPoHQ0eqg6ibEU2V1HMRLVBcR+ZpJhhpAZnUgdayBLQGMX1TTgVvHW3iqIelAxfv57cdFPTcarsSP+I1MTFSM5bt4tJIEYft5vuY9a7Gv3LzgAvhg1j0iE1inoDuWtWpTovtsXipjdLsnKD4D3GN/NxpZhaIwr8NVKx2F4MyEg0uT4aH2cemWoWNawZuaXqI2XWPUI3VMupRnZsWthyyIPd9fja3Fk2b0aklYewnLZOgqW8hXM9rkyCI1RDTp/0aW40tzM9mdHqOdqFOzV4a1KxKAvHdVKRLXvI=
+  - secure: jRG7FUyxFqWPmHAY5OnmCmjX5BLmKW+GdD46oNAx9dsZcKzRrZhQoAd9ppYB/EZw0J322gUAnrE5Q7eUuZxtLodzFlwYZDnJGAcRd52zl701bY3y2dlWRMbVmpIpjeVzWnw1JMCw14LOlAdFbexhZT7Z+MlCSwwc6W6tvgSQ3mNoeamdeeLZPEBVRTP8INTFzYS6mvnS0S8eTx15/9CE/kYmxzp1e/RLTvGHByiCbvW86RVPutJBDYyGJAamRHioiKDzsVYKeQ0xDi8HN/xV5wwLXCVybZ7mmlpHzwrVSS9PR2KTJNQXKPbZMXQ5CuTbcbFRxTGYRhlkPSTWdZls9JdWBJ2BRaXnty/BwP3qUwlDw73BgiKAAdNTTvBCy+QGPUddaY32Ni9r+U5oWMpjpBbpxpsPTG7axzm1rNy+788JkqE8RX9AUbp9fISppHzgIC2ODNvXPmn+8HqmUnWmCK7BSm6iDWp+h4fq0V/70E1hf+8pbniyFiF4on/rDuwYKm8nw9Ryrrj9oWFwIIZQ+J5nE5WzULByCrs7ER2+ebeUj/YNYha6HNRz+lmlgBgrCVndspwdAuw3cQHnr4414eyekYqNUqfck/Xq7DBcVbyYaN/IFC3SsRET7cVKSe60YLPjnvOQovFBd7NFgZJOqxaWkoZ7aC6XevwJtuaJ6Hk=
+  - secure: AtrJl5JvZE4f66a8C4A61AKtAS69mhgCD7X8sXpbImnUKBtpsWPI2BGYixiQdOyEU6nsGwXfVKr4CuEFq0nqRu6mU3kr94Jz8Brm7YGQtb3X818ZqJ5O4HxwwCcqHH874fznCImcjpkDNppK9bFXC3zufUwVr3/KcAMoUlJbXQ5c3aFp7L55XBRWF6aFLzPInktzqsGErT7EBUAgnDiov+ZBBhoucfDHdKnlW3rtMYZgPm/No6/3y38ttulVV8bvCl9TTQpPqEjLc+GlNdjvCNFUZDrQwDiMH5RiNjcvCAvzt3k6NP1p8TY//4nQwN48jYRZeo/It+K9uiqwBjEzxTvpq9lQXXrbItxNZlDhDzq3tyWdwctR2S0A5JWEfb1HLrMQCTtVXAa5Nzk7ejfGSiCq0ma3L62M6GrydfXbXk52CbRCicf26Rg/+qV5iPJt3VWh6WXq6UmHgA9iNqLkaiPPT0lVkLgkOxYNHzZrOEnvicgFtJMMADhhS2oPWW3Fit4w8fNEF7KxvlyGEr6+5VxhWIBw+C5eITVsb0TrpGq4g0KGWfd8/5gk6I4PZmOKCaq2MJLllS6nBDDXzUIP0hO8VAh/R0oZ1gz/rDHD+3ykkOKYPfT8Md59kAUKZ6XejD02qoP2LIkNCLYsKM2DdGHqo4bMQ0JjcfUCzP9a8D0=
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
+before_install:
+- bash .travis/deploy-codesigning.sh
 install:
-  - bash .travis/update.sh
-  - export M2_HOME=/usr/share/maven3 && export PATH=${M2_HOME}/bin:${PATH} && export MAVEN_OPTS="-Xms2048m -Xmx2048m"
-  - java -version && javac -version && mvn -version -B
+- bash .travis/update.sh
+- export M2_HOME=/usr/share/maven3 && export PATH=${M2_HOME}/bin:${PATH} && export MAVEN_OPTS="-Xms2048m -Xmx2048m"
+- java -version && javac -version && mvn -version -B
 before_script:
-  - mvn dependency:resolve-plugins dependency:resolve -B
+- mvn dependency:resolve-plugins dependency:resolve -B
 script:
-  - mvn clean install -B -Dgpg.skip=true
+- mvn clean install -B
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -B
+deploy:
+  provider: script
+  script: bash .travis/deploy.sh
+  skip_cleanup: true
+  on:
+    tags: false
+    all_branches: true
 cache:
   directories:
-  - $HOME/.m2
-  - $HOME/.victims
+  - "$HOME/.m2"
+  - "$HOME/.victims"
