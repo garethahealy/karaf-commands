@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 addons:
-  sonarqube:
+  sonarcloud:
     organization: garethahealy-github
     token:
       secure: JkCGrPpX4Hr56xbbEMYLgmAIrYdPzIz30SaIapW82UFYBCaKji+bdVTBFTy2DFfE3rfCgEr7WuAqdxfhT1muZptZoZxlB/bHUmPMePMdGQkKR1xjD9CbeNGLnn6SWsIZ3lHBBAkUqZkCT1dizhhWmF7xEs6pgosPZAyTvqRfteMyn6jpT2YdHH6ZcC9nOsTbfUvBAB/1M5d5XQQT3i4NAILqmVv6OZ2IMRoTrTeKRHagwWKiiwWGt7m67NQ9TG4ZxSQO8myxKml3t0uwwfIZKUXOT11cq4aiX6bVoRwuzI1XE/tSnxcgJixYmHIt1bQ65NYdypZnBWsCzKhhnW6sqYtfJEE7lZ8EfuKY2cDs7s43de0mrrnaxN1pShx/lOv38KLs9Cnfx09eKM7tSLBeIai2gousJArwJpgT9NRJQnTRT5LIdtb4QWU/n0/8VL430z4Ir/+z0YkL7i6BnzAKHca47zt3sEOCmF/fF9G9QiG5dGhLo9JzxLK/ix11DpMrcdcfREfQSwfzfFbFNpd8UUdj7p5JjGVjrgPdxNXXVt3nirG+S5n1Lra8+MfL2IbVM3ma62be8sC4/mQYSuvVWDZHtJJ4yATP+9NWX/eU8h29gNNvM2X2RIrQmmkvf9w/aTaoMOFu0RRX5VtDEEYKdIAvr93GU/sANOPfdxJ1olg=
@@ -17,14 +17,13 @@ jdk:
 before_install:
 - bash .travis/deploy-codesigning.sh
 install:
-- bash .travis/update.sh
-- export M2_HOME=/usr/share/maven3 && export PATH=${M2_HOME}/bin:${PATH} && export MAVEN_OPTS="-Xms2048m -Xmx2048m"
-- java -version && javac -version && mvn -version -B
+- mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
+- java -version && javac -version && ./mvnw -version -B
 before_script:
-- mvn dependency:resolve-plugins dependency:resolve -B
+- ./mvnw dependency:go-offline -B
 script:
-- mvn clean install -B
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -B
+- ./mvnw clean install -B
+- ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -B
 deploy:
   provider: script
   script: bash .travis/deploy.sh
@@ -34,5 +33,6 @@ deploy:
     all_branches: true
 cache:
   directories:
-  - "$HOME/.m2"
-  - "$HOME/.victims"
+  - $HOME/.m2
+  - $HOME/.victims
+  - $HOME/.sonar/cache
